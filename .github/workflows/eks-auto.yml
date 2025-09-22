@@ -4,8 +4,9 @@ on:
   push:
     branches: 
       - main
+    paths: [eks-auto-terrafrom-cicd/environments/dev/**, eks-auto-terrafrom-cicd/modules/**, .github/workflows/eks-auto.yml]
   workflow_dispatch:  
-   # paths: [environments/dev/**, modules/**, .github/workflows/eks-auto.yml]
+   
 
 permissions:
   id-token: write
