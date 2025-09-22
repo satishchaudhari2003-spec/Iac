@@ -2,8 +2,10 @@ name: EKS Auto Mode Cluster Pipeline
 
 on:
   push:
-    branches: [main]
-    paths: [environments/dev/**, modules/**, .github/workflows/eks-auto.yml]
+    branches: 
+      - main
+  workflow_dispatch:  
+   # paths: [environments/dev/**, modules/**, .github/workflows/eks-auto.yml]
 
 permissions:
   id-token: write
