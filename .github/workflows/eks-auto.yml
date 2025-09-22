@@ -32,11 +32,11 @@ jobs:
           terraform_version: 1.8.2
 
       - name: Terraform Init
-        run: terraform -chdir=environments/dev init
+        run: terraform -chdir=eks-auto-terrafrom-cicd/environments/dev init
 
       - name: Terraform Plan
-        run: terraform -chdir=environments/dev plan -input=false
+        run: terraform -chdir=eks-auto-terrafrom-cicd/environments/dev plan -input=false
 
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main'
-        run: terraform -chdir=environments/dev apply -auto-approve -input=false
+    #  - name: Terraform Apply
+     ##   if: github.ref == 'refs/heads/main'
+      #  run: terraform -chdir=eks-auto-terrafrom-cicd/environments/dev apply -auto-approve -input=false
