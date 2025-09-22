@@ -4,7 +4,7 @@ on:
   push:
     branches: 
       - main
-    paths: [eks-auto-terrafrom-cicd/environments/dev/**, eks-auto-terrafrom-cicd/modules/**, .github/workflows/eks-auto.yml]
+    paths: [eks-auto-terraform-cicd/environments/dev/**, eks-auto-terraform-cicd/modules/**, .github/workflows/eks-auto.yml]
   workflow_dispatch:  
    
 
@@ -32,10 +32,10 @@ jobs:
           terraform_version: 1.8.2
 
       - name: Terraform Init
-        run: terraform -chdir=eks-auto-terrafrom-cicd/environments/dev init
+        run: terraform -chdir=eks-auto-terraform-cicd/environments/dev init
 
       - name: Terraform Plan
-        run: terraform -chdir=eks-auto-terrafrom-cicd/environments/dev plan -input=false
+        run: terraform -chdir=eks-auto-terraform-cicd/environments/dev plan -input=false
 
     #  - name: Terraform Apply
      ##   if: github.ref == 'refs/heads/main'
