@@ -1,0 +1,39 @@
+name: EKS Auto Mode Cluster Pipeline
+
+on:
+  push:
+    branches: [main]
+    paths: [environments/dev/**, modules/**, .github/workflows/eks-auto.yml]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::508901769948:role/Automation_Role
+          aws-region: ap-south-1
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.8.2
+
+      - name: Terraform Init
+        run: terraform -chdir=environments/dev init
+
+      - name: Terraform Plan
+        run: terraform -chdir=environments/dev plan -input=false
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main'
+        run: terraform -chdir=environments/dev apply -auto-approve -input=false
