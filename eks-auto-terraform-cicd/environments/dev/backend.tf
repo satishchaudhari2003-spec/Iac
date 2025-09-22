@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket         = "your-tf-state-bucket"
+    bucket         = "eks-backends3-bucket-test"
     key            = "environments/dev/terraform.tfstate"
     region         = "ap-south-1"
     encrypt        = true
